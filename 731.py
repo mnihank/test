@@ -179,7 +179,6 @@ while 1:    #無限迴圈
         myTurtle.forward(6)
     elif(data[0]=='f'):
         data1=200
-        myTurtle.forward(2)
     if(p==4):
         p=0
     if(p==-1):
