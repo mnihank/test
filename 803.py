@@ -1,7 +1,13 @@
 import turtle                   # 匯入小烏龜模組
 ######################
-import csv
-fn = 'test.csv'
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials as SAC
+Json = 'turtle-321809-f6204b09cdfb.json'
+Url = ['https://spreadsheets.google.com/feeds']
+Connect = SAC.from_json_keyfile_name(Json, Url)
+GoogleSheets = gspread.authorize(Connect)
+Sheet = GoogleSheets.open_by_key('1VzZ1TEGRZROAowt8t2-w2dV7iSAOAz_vYGfGT7Y_KRc') # 這裡請輸入妳自己的試算表代號
+Sheets = Sheet.sheet1
 ######################
 from turtle import clear, goto, write 
 import serial
@@ -84,9 +90,7 @@ while 1:    #無限迴圈
         v.append(g)
         v.append(excelx)
         v.append(excely)
-        with open (fn, 'w', newline= '') as csvFile:
-            csvWrite = csv.writer(csvFile)
-            csvWrite.writerow(v)
+        Sheets.append_row(v)
         print(v)      #這邊放輸入excel的程式
         v=[]
         g=g+1
@@ -115,9 +119,7 @@ while 1:    #無限迴圈
         v.append(g)
         v.append(excelx)
         v.append(excely)
-        with open (fn, 'w', newline= '') as csvFile:
-            csvWrite = csv.writer(csvFile)
-            csvWrite.writerow(v)
+        Sheets.append_row(v)
         print(v)      #這邊放輸入excel的程式
         v=[]
         g=g+1
@@ -146,9 +148,7 @@ while 1:    #無限迴圈
         v.append(g)
         v.append(excelx)
         v.append(excely)
-        with open (fn, 'w', newline= '') as csvFile:
-            csvWrite = csv.writer(csvFile)
-            csvWrite.writerow(v)
+        Sheets.append_row(v)
         print(v)      #這邊放輸入excel的程式
         v=[]
         g=g+1
@@ -177,9 +177,7 @@ while 1:    #無限迴圈
         v.append(g)
         v.append(excelx)
         v.append(excely)
-        with open (fn, 'w', newline= '') as csvFile:
-            csvWrite = csv.writer(csvFile)
-            csvWrite.writerow(v)
+        Sheets.append_row(v)
         print(v)      #這邊放輸入excel的程式
         v=[]
         g=g+1
