@@ -2,11 +2,11 @@ import turtle                   # 匯入小烏龜模組
 ######################
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials as SAC
-Json = 'turtle-321809-f6204b09cdfb.json'
+Json = 'turtle-30925104-5c223ec58120.json'
 Url = ['https://spreadsheets.google.com/feeds']
 Connect = SAC.from_json_keyfile_name(Json, Url)
 GoogleSheets = gspread.authorize(Connect)
-Sheet = GoogleSheets.open_by_key('1VzZ1TEGRZROAowt8t2-w2dV7iSAOAz_vYGfGT7Y_KRc') # 這裡請輸入妳自己的試算表代號
+Sheet = GoogleSheets.open_by_key('1-CIRwxIeSR2EidHgs6lhB8iqgx0dM_Icfl7V7g4vtMI') # 這裡請輸入妳自己的試算表代號
 Sheets = Sheet.sheet1
 ######################
 from turtle import clear, goto, write 
@@ -28,7 +28,7 @@ turtle.ht()                     #隱藏畫筆
 myTurtle.setx(450) #設置機器人初始位置
 myTurtle.sety(250) #設置機器人初始位置
 myTurtle.pendown()                # 落筆
-s=serial.Serial("COM11",115200)   #連結arduino序列埠   
+s=serial.Serial("/dev/ttyACM0",115200)   #連結arduino序列埠   
 ########
 lst=[]
 lst1=[]
@@ -42,8 +42,11 @@ a=0
 ########
 j=0  #TF方向  1:左  2:右
 p=0  #北東南西
-g=0  #傳值給excel
+g=1  #傳值給excel
 v=[] #傳值給excel
+#試算表最上方名稱
+v1=['順序','x軸座標','y軸座標']
+Sheets.append_row(v1)
 while 1:    #無限迴圈
     data=s.readline().decode()   #讀arduino匯出值(一行)
     if(len(data)<=1):
@@ -306,6 +309,13 @@ while 1:    #無限迴圈
                     turtle.penup()
                     u2=u2+1
                     u3=u3+1
+
+
+        
+        
+
+        
+
 
 
         
